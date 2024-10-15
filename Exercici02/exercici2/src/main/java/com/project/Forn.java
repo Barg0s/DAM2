@@ -22,12 +22,12 @@ public class Forn extends Electrodomestic {
 
     @Override
     public boolean equals(Object object2) {
-        // Comprova si són la mateixa referència
+        // Comprova SI SON DE LA MATEIXA REFERENCIA
         if (this == object2) return true;
 
         if (!(object2 instanceof Electrodomestic) || !super.equals(object2)) return false;
 
-        // Comprova si els dos objectes són exactament de la mateixa classe
+        // COMPROVA SI SON DE LA MATEIXA CLASE
         if (!this.getClass().equals(object2.getClass())) return false;
 
         Forn cast2 = (Forn) object2;
