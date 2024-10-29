@@ -1,0 +1,37 @@
+[
+    {
+        "popularitat": 8,
+        "id": 0,
+        "nom": "C",
+        "any": 1972,
+        "dificultat": "dificil"
+    },
+    {
+        "popularitat": 7,
+        "id": 1,
+        "nom": "C++",
+        "any": 1995,
+        "dificultat": "mitja"
+    },
+    {
+        "popularitat": 2,
+        "id": 2,
+        "nom": "Objective C",
+        "any": 1984,
+        "dificultat": "dificil"
+    },
+    {
+        "popularitat": 5,
+        "id": 3,
+        "nom": "JavsScript",
+        "any": 1996,
+        "dificultat": "facil"
+    },
+    {
+        "popularitat": 9,
+        "id": 4,
+        "nom": "Java",
+        "any": 1995,
+        "dificultat": "mitja"
+    }
+]

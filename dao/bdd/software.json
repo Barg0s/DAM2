@@ -1,0 +1,94 @@
+[
+    {
+        "llenguatges": [
+            0,
+            1,
+            4
+        ],
+        "id": 0,
+        "nom": "Linux",
+        "any": 1991
+    },
+    {
+        "llenguatges": [
+            1,
+            4
+        ],
+        "id": 1,
+        "nom": "Adobe Photoshop",
+        "any": 1988
+    },
+    {
+        "llenguatges": [
+            1,
+            4
+        ],
+        "id": 2,
+        "nom": "Microsoft Office",
+        "any": 1989
+    },
+    {
+        "llenguatges": [
+            1,
+            3,
+            4
+        ],
+        "id": 3,
+        "nom": "Mozilla Firefox",
+        "any": 2002
+    },
+    {
+        "llenguatges": [
+            1,
+            4
+        ],
+        "id": 4,
+        "nom": "Android",
+        "any": 2008
+    },
+    {
+        "llenguatges": [
+            1,
+            4
+        ],
+        "id": 5,
+        "nom": "MySQL",
+        "any": 1995
+    },
+    {
+        "llenguatges": [
+            1,
+            3
+        ],
+        "id": 6,
+        "nom": "Facebook",
+        "any": 2004
+    },
+    {
+        "llenguatges": [
+            1,
+            3
+        ],
+        "id": 7,
+        "nom": "Twitter",
+        "any": 2006
+    },
+    {
+        "llenguatges": [
+            0,
+            1
+        ],
+        "id": 8,
+        "nom": "Git",
+        "any": 2005
+    },
+    {
+        "llenguatges": [
+            1,
+            4
+        ],
+        "id": 9,
+        "nom": "Visual Studio Code",
+        "any": 2015
+    }
+]

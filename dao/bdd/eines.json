@@ -1,0 +1,54 @@
+[
+    {
+        "llenguatges": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "id": 0,
+        "nom": "Visual Studio Code",
+        "any": 2015
+    },
+    {
+        "llenguatges": [
+            0,
+            1,
+            2
+        ],
+        "id": 1,
+        "nom": "Xcode",
+        "any": 2003
+    },
+    {
+        "llenguatges": [4],
+        "id": 2,
+        "nom": "Eclipse",
+        "any": 2001
+    },
+    {
+        "llenguatges": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "id": 3,
+        "nom": "Vim",
+        "any": 1991
+    },
+    {
+        "llenguatges": [
+            0,
+            1,
+            2,
+            3,
+            4
+        ],
+        "id": 4,
+        "nom": "Nano",
+        "any": 1999
+    }
+]
