@@ -143,9 +143,6 @@ public class DaoEina implements Dao<ObjEina> {
 
     }
 
-
-
-
     @Override
     public void update(int id, ObjEina eina) {
         ArrayList<ObjEina> llista = getAll();
