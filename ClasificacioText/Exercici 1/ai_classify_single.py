@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os
+import os,re
 import json
 print("Loading AI libraries ..."); 
 import torch
@@ -21,7 +21,6 @@ def clearScreen():
         os.system('clear')
 
 clearScreen()
-
 
 def predict_text(text: str, model: nn.Module, tokenizer, device: torch.device, config: ModelConfig, label_encoder):
     model.eval()  # Posa el model en mode d'avaluació
@@ -75,15 +74,12 @@ def main():
     model.eval()
     
     # Validació
-    frase_usuari = input("What's your opinion about the airline?")
     with torch.no_grad():
-
-            # Utilitza la funció predict_text per fer la predicció
-            predicted_label, confidence = predict_text(frase_usuari, model, tokenizer, device, config, le)
-            print(f"Your opinion about the airline is {predicted_label}")
-
-
-
+            for i in range(3):
+                frase_usuari = input("What's your opinion about the airline?")
+                predicted_label, confidence = predict_text(frase_usuari, model, tokenizer, device, config, le)
+                print(f"Your opinion about the airline is {predicted_label} {confidence:.2f}%")
+            
 if __name__ == "__main__":
     main()
 

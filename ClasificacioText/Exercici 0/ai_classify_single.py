@@ -66,9 +66,6 @@ def main():
     le = LabelEncoder()
     le.fit(metadata['label_encoder'])  # Inicialitza correctament les classes
 
-    # Seleccionar mostres i preparar dataset
-
-
     # Carregar el model entrenat
     device = getDevice()
 
