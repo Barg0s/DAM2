@@ -24,7 +24,7 @@ def clearScreen():
 
 clearScreen()
 
-def train_epoch(model, dataloader, optimizer, criterion, device):
+def train_epoch(model, dataloader, optimizer, criterion, device): #dades de entrenament i les processa.
     model.train()
     total_loss = 0
     correct = 0
@@ -51,7 +51,7 @@ def train_epoch(model, dataloader, optimizer, criterion, device):
     accuracy = correct / total
     return total_loss / len(dataloader), accuracy
 
-def evaluate_epoch(model, dataloader, criterion, device):
+def evaluate_epoch(model, dataloader, criterion, device): #retorna la accuaracy i la perdua.
     model.eval()
     total_loss = 0
     correct = 0
@@ -76,11 +76,11 @@ def evaluate_epoch(model, dataloader, criterion, device):
     return total_loss / len(dataloader), accuracy
 
 
-def main():
+def main(): 
     with open(CONFIG_FILE) as f:
-        config_file = json.load(f)
+        config_file = json.load(f) #carreguem la configuració
     
-    column_text = config_file['columns']['text']
+    column_text = config_file['columns']['text'] #fiquem las columnes del json del model
     column_idioma = config_file['columns']['categories']  
 
     print("Loading data ...")
