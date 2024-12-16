@@ -13,25 +13,25 @@ def generate_all_matrices():
     
     return matrices
 
-'''0 0 0
+'''0 0 0 
    0 0 0
    0 0 0'''
 
-def perceptronDiagonal(matriu):
-    if (matriu[0] == matriu  [4] == matriu[8] == 1) or( matriu[2] == matriu[4] == matriu[6] == 1):
+def perceptroDiagonal(matriu):
+    if (matriu[0] == 1 and matriu[4] == 1 and matriu[8] == 1) or( matriu[2] == 1 and matriu[4] == 1 and matriu[6] == 1):
         return 1
     return 0
     
 def perceptroHorizontal(matriu):
     for i in range(0,9,3):
-        if matriu[i] == matriu[i + 1] == matriu[i + 2] == 1:
+        if matriu[i] == 1 and matriu[i + 1] ==  1 and matriu[i + 2] == 1:
             return 1
     return 0
 
 
 def perceptroVertical(matriu):
     for i in range(0,3):
-        if matriu[i] == matriu[i + 3] == matriu[i + 6] == 1:
+        if matriu[i] == 1 and matriu[i + 3] == 1 and matriu[i + 6] == 1:
             return 1
     return 0
 
@@ -45,7 +45,7 @@ labels = []
 for matriu in inputs:
     x = perceptroHorizontal(matriu)
     y = perceptroVertical(matriu)
-    z = perceptronDiagonal(matriu)
+    z = perceptroDiagonal(matriu)
     if x == 1:
         labels.append(x)
     elif y == 1:
@@ -61,5 +61,3 @@ for epoch in EPOCHS_LIST:
     weights, bias = train(weights, bias, inputs, labels, LEARNING_RATE, epoch)
     accuracy = test_accuracy(weights, bias, inputs, labels)
     print(f"\nPercentatge d'encert dels perceptrons entrenats amb {epoch} EPOCHS: {accuracy}%\n")
-
-
