@@ -45,39 +45,39 @@ with open('EXCEL/notes.json') as f:
     data = json.load(f)
     worksheet.write_row(0, 0, titols) 
     worksheet.write_row(1, 1, percentatges)  
-    linea = 2
-    linea_notes = 3
+    fila = 2
+    fila_notes = 3
     for element in data:  
         col = 0
         for titol in titols:
             if titol in element:  
-                worksheet.write(linea, col, element[titol]) 
+                worksheet.write(fila, col, element[titol]) 
             col += 1
 
-        worksheet.write_formula(linea, 7, f'=IF(AND(F{linea_notes} > 4, G{linea_notes} < 20), "Valid", "No Valid")')
-        worksheet.write_formula(linea, 8, f'=IF(H{linea_notes} = "Valid", SUMPRODUCT(B{linea_notes}:F{linea_notes}, B2:F2), 1)')
+        worksheet.write_formula(fila, 7, f'=IF(AND(F{fila_notes} > 4, G{fila_notes} < 20), "Valid", "No Valid")')
+        worksheet.write_formula(fila, 8, f'=IF(H{fila_notes} = "Valid", SUMPRODUCT(B{fila_notes}:F{fila_notes}, B2:F2), 1)')
 
-        linea_notes += 1
-        linea += 1 
+        fila_notes += 1
+        fila += 1 
 # FULL 1    
 worksheet1.write_row(0, 0, titols_pag_2) 
 worksheet1.write_row(1, 1, percentatges)  
-linea = 2
-linees2 = 3
+fila = 2
+files2 = 3
 for element in data:  
     col_2 = 1  
     for titol in titols_pag_2:
         if titol == "id":  
-            worksheet1.write_formula(linea, 0, f'=MID("={element["id"]}",4,4)') 
+            worksheet1.write_formula(fila, 0, f'=MID("={element["id"]}",4,4)') 
         elif titol in element:  
             for columna in lista_columns:
                 if col_2 < len(lista_columns) + 1:
-                    worksheet1.write_formula(linea, col_2, f"'Full 0'!{columna}{linees2}") 
+                    worksheet1.write_formula(fila, col_2, f"'Full 0'!{columna}{files2}") 
                     col_2 += 1
 
 
-    linees2 += 1
-    linea += 1
+    files2 += 1
+    fila += 1
 
 workbook.close()
 print(f"Generated: '{filename}'")
