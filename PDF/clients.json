@@ -5,6 +5,7 @@
       "nom": "Anna",
       "cognom": "Garcia",
       "mes_factura": "Gener",
+      "telefon": 674294129,
       "detall_cobraments": {
         "quota_basica": 25.50,
         "serveis_addicionals": [

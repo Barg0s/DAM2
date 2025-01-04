@@ -82,12 +82,12 @@ styles = {
     "BodyLeft": ParagraphStyle(
         name="BodyLeft",
         fontName="Helvetica",
-        fontSize=15,
-        leading=15,
+        fontSize=12,
+        leading=14,
         textColor=custom_colors['neutral'],
         alignment=TA_LEFT,
-        spaceBefore=12,
-        spaceAfter=12,
+        spaceBefore=10,
+        spaceAfter=7,
         firstLineIndent=0,
     ),
     "BodyRight": ParagraphStyle(
