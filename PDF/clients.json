@@ -35,6 +35,7 @@
       "nom": "Joan",
       "cognom": "Martínez",
       "mes_factura": "Febrer",
+      "telefon": 612345789,
       "detall_cobraments": {
         "quota_basica": 30.00,
         "serveis_addicionals": [
@@ -62,6 +63,7 @@
       "companyia": "MonoPhonica",
       "nom": "Maria",
       "cognom": "Lopez",
+      "telefon": 634298451,
       "mes_factura": "Març",
       "detall_cobraments": {
         "quota_basica": 20.00,
@@ -88,6 +90,7 @@
       "companyia": "NewLines",
       "nom": "Pere",
       "cognom": "Fernandez",
+      "telefon": 655813290,
       "mes_factura": "Abril",
       "detall_cobraments": {
         "quota_basica": 40.00,
@@ -117,6 +120,7 @@
       "companyia": "AcostaVeu",
       "nom": "Marta",
       "cognom": "Sanchez",
+      "telefon": 689742561,
       "mes_factura": "Maig",
       "detall_cobraments": {
         "quota_basica": 35.00,

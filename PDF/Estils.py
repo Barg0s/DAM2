@@ -29,6 +29,17 @@ styles = {
         alignment=TA_CENTER,
         spaceAfter=20,
     ),
+    "link_style" : ParagraphStyle(
+        name="BodyLeft",
+        fontName="Helvetica",
+        fontSize=12,
+        leading=15,
+        textColor='#00BBFF',
+        alignment=TA_LEFT,
+        spaceBefore=6,
+        spaceAfter=6,
+        firstLineIndent=0,
+    ),
     "Subtitle": ParagraphStyle(
         name="Subtitle",
         fontName="Helvetica-Oblique",
@@ -43,7 +54,7 @@ styles = {
         fontName="Helvetica-Bold",
         fontSize=16,
         leading=20,
-        textColor=custom_colors['accent1'],
+        textColor=custom_colors['accent2'],
         alignment=TA_LEFT,
         spaceBefore=10,
         spaceAfter=8,
@@ -90,6 +101,20 @@ styles = {
         spaceAfter=7,
         firstLineIndent=0,
     ),
+    "piepagina": ParagraphStyle(
+        name="piepagina",
+        fontName="Helvetica-Bold",
+        fontSize=12,
+        leading=14,
+        textColor=custom_colors['accent2'],
+        alignment=TA_LEFT,
+        spaceBefore=10,
+        spaceAfter=7,
+        firstLineIndent=0,
+    ),
+
+
+    
     "BodyRight": ParagraphStyle(
         name="BodyRight",
         fontName="Helvetica",
