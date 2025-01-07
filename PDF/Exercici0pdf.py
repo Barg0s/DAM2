@@ -13,7 +13,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
-filename = 'PDF/Exercici0.pdf'
+
 idx_client = 0
 image_path = 'PDF/firmafirma.png'
 page_width, page_height = A4
@@ -56,9 +56,11 @@ rects = [
 
 with open("PDF/clients.json", encoding="utf-8") as f:
     data = json.load(f)
+    num = 0
     for idx_client in range(5):
         client = data['clients'][idx_client]
-        filename = f"PDF/Factura_{client['nom']}_{client['cognom']}.pdf"
+        filename = f"PDF/Factura{num}.pdf"
+        num+=1
         c = canvas.Canvas(filename, pagesize=A4)
         page_width, page_height = A4
         current_y = page_height - 50
@@ -79,7 +81,7 @@ with open("PDF/clients.json", encoding="utf-8") as f:
         draw_paragraph(c,f"Factura {client['mes_factura']}",e.styles["piepagina"],50,65,100)
         num_pag = 1
 
-        draw_paragraph(c,str(num_pag),e.styles["BodyRight"],50,65,500)
+        draw_paragraph(c,str(num_pag),e.styles["piepaginanum"],50,65,500)
         
         for rect in rects:
             c.rect(rect["x"], rect["y"] - rect["height"], rect["width"], rect["height"])
@@ -143,7 +145,7 @@ with open("PDF/clients.json", encoding="utf-8") as f:
         num_pag = 2
         current_y = page_height - 50
         draw_paragraph(c, f"{client['companyia']}", e.styles["HeadingRight"], 50, current_y, 500)
-        draw_paragraph(c,str(num_pag),e.styles["BodyRight"],50,65,500)
+        draw_paragraph(c,str(num_pag),e.styles["piepaginanum"],50,65,500)
 
         current_y -= 20
         draw_paragraph(c, f"Calendari", e.styles["HeadingLeft"], 50, current_y - 40, 500)

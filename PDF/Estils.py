@@ -104,7 +104,7 @@ styles = {
     "piepagina": ParagraphStyle(
         name="piepagina",
         fontName="Helvetica-Bold",
-        fontSize=12,
+        fontSize=9,
         leading=14,
         textColor=custom_colors['accent2'],
         alignment=TA_LEFT,
@@ -112,7 +112,17 @@ styles = {
         spaceAfter=7,
         firstLineIndent=0,
     ),
-
+    "piepaginanum": ParagraphStyle(
+        name="piepaginanum",
+        fontName="Helvetica-Bold",
+        fontSize=9,
+        leading=14,
+        textColor=custom_colors['accent2'],
+        alignment=TA_RIGHT,
+        spaceBefore=10,
+        spaceAfter=7,
+        firstLineIndent=0,
+    ),
 
     
     "BodyRight": ParagraphStyle(
