@@ -20,7 +20,7 @@ def estils_condicionals(full):
         'type': 'cell',
         'criteria': '<',
         'value': 5,
-        'format': workbook.add_format({'bg_color': '#FF0000', 'font_color': '#000000', 'align': 'center', 'valign': 'vcenter'})
+        'format': workbook.add_format({'bg_color': '#FFFFFF', 'font_color': '#FF0000', 'align': 'center', 'valign': 'vcenter'})
     })
     full.conditional_format("I3:I34", { 
         'type': 'cell',
