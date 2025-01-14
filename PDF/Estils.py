@@ -15,7 +15,7 @@ custom_colors = {
     'primary': colors.HexColor('#1B4F72'),
     'secondary': colors.HexColor('#2E86C1'),
     'accent1': colors.HexColor('#E74C3C'),
-    'accent2': colors.HexColor('#187bcd'),
+    'accent2': colors.HexColor('#387fa0'),
     'neutral': colors.HexColor('#566573'),
 }
 

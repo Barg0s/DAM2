@@ -3,14 +3,8 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import json
 import Estils as e
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
 from reportlab.platypus import Paragraph
-from reportlab.lib.styles import ParagraphStyle
-from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT, TA_JUSTIFY
 from reportlab.lib import colors
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase.pdfmetrics import stringWidth
 
 
@@ -23,6 +17,26 @@ def draw_paragraph(c, text, style, x, y, width):
     p.drawOn(c, x, y - height)
     return height
 
+def draw_encabezado(c,client,y):
+    c.setStrokeColor((0.22,0.5, 0.63))
+    draw_paragraph(c, f"{client['companyia']}", e.styles["HeadingRight"], 50, y, 500)
+    c.setLineWidth(3)
+    c.line(50, page_height - 50, 550, page_height - 50)
+
+def draw_peu(c, client, num_pag):
+    c.setStrokeColor((0.22,0.5, 0.63))
+
+    c.setLineWidth(1)  
+    c.line(50, 50, 550, 50) 
+    draw_paragraph(c, f"Factura {client['mes_factura']}", e.styles["piepagina"], 50, 65, 100)
+    draw_paragraph(c, str(num_pag), e.styles["piepaginanum"], 50, 65, 500)
+
+def dibuixarllegenda(c, x, y, color, text):
+    c.setFillColor(color)
+    c.rect(x, y, 15, 15, stroke=1, fill=1)
+    draw_paragraph(c, text, e.styles["BodyLeft"], x + 25, y + 15, width=150)
+
+
 def draw_bullet_list(c, items, style, x, y, width):
     for item in items:
         bullet_text = f"- {item}"
@@ -32,27 +46,12 @@ def draw_bullet_list(c, items, style, x, y, width):
         y -= (height + style.spaceBefore + style.spaceAfter)
     return y
 
-custom_colors = {
-    'primary': colors.HexColor('#1B4F72'),
-    'secondary': colors.HexColor('#2E86C1'),
-    'accent1': colors.HexColor('#E74C3C'),
-    'accent2': colors.HexColor('#187bcd'),
-    'neutral': colors.HexColor('#566573'),
-}
 
 rect_width = 200
 rect_height = 90
 margin_x = 50
 margin_y = 430
 
-rects = [
-    {"x": margin_x, 
-     "y": page_height - margin_y, 
-     "width": rect_width - 10, 
-     "height": rect_height, 
-     "alignment": TA_LEFT, 
-     "title": "Align left"},
-]
 
 with open("PDF/clients.json", encoding="utf-8") as f:
     data = json.load(f)
@@ -62,29 +61,19 @@ with open("PDF/clients.json", encoding="utf-8") as f:
         filename = f"PDF/Factura{num}.pdf"
         num+=1
         c = canvas.Canvas(filename, pagesize=A4)
-        page_width, page_height = A4
         current_y = page_height - 50
         margin = 50
         width = page_width - (2 * margin)
-        
-        c.setFillColorRGB(24 / 255, 123 / 255, 205 / 255)  
-        c.rect(50, page_height - 50, 500, 3, stroke=0, fill=1)
-        c.rect(50, 50, 500, 1, stroke=0, fill=1)
+        draw_peu(c,client,1)
+        draw_encabezado(c,client,current_y)
 
         texts = [
-            (f"{client['companyia']}", "HeadingRight"),
             (f"Estimad@ {client['nom']}, {client['cognom']}", "BodyLeft"),
             (f"Ens dirigim a vostè per presentar-li el detall de la seva factura corresponent al mes de {client['mes_factura']}: ", "BodyLeft"),
             ("Detall dels Cobraments", "BodyLeft"),
         ]
-        
-        draw_paragraph(c,f"Factura {client['mes_factura']}",e.styles["piepagina"],50,65,100)
-        num_pag = 1
 
-        draw_paragraph(c,str(num_pag),e.styles["piepaginanum"],50,65,500)
-        
-        for rect in rects:
-            c.rect(rect["x"], rect["y"] - rect["height"], rect["width"], rect["height"])
+
 
         list_items = [
             f"Quota bàsica mensual: {client['detall_cobraments']['quota_basica']}",
@@ -135,24 +124,20 @@ with open("PDF/clients.json", encoding="utf-8") as f:
         text_height = draw_paragraph(c, text, e.styles["BodyLeft"], 100 + width + 10, 200 + 100, width)
 
         for text, style_name in texts:
-            height = draw_paragraph(c, text, e.styles[style_name], margin, current_y, width)
+            height = draw_paragraph(c, text, e.styles[style_name], margin, current_y - 60, width)
             current_y -= (height + e.styles[style_name].spaceBefore + e.styles[style_name].spaceAfter)
 
-        current_y = draw_bullet_list(c, list_items, e.styles["ListStyle"], margin, current_y, width)
+        current_y = draw_bullet_list(c, list_items, e.styles["ListStyle"], margin, current_y - 60, width)
 
         c.showPage()
-
-        num_pag = 2
         current_y = page_height - 50
-        draw_paragraph(c, f"{client['companyia']}", e.styles["HeadingRight"], 50, current_y, 500)
-        draw_paragraph(c,str(num_pag),e.styles["piepaginanum"],50,65,500)
-
+        draw_encabezado(c,client,current_y)
+        draw_peu(c,client,2)
         current_y -= 20
         draw_paragraph(c, f"Calendari", e.styles["HeadingLeft"], 50, current_y - 40, 500)
+        draw_paragraph(c,f"Li recordem el calendari de pagaments anual segons el seu pla contractat:",e.styles["BodyLeft"],50,current_y - 60,500)
 
-        c.setFillColorRGB(24 / 255, 123 / 255, 205 / 255)  
-        c.rect(50, page_height - 50, 500, 3, stroke=0, fill=1)
-        c.rect(50, 50, 500, 1, stroke=0, fill=1)
+
 
         draw_paragraph(c,f"Factura {client['mes_factura']}",e.styles["piepagina"],50,65,100)
 
@@ -174,7 +159,7 @@ with open("PDF/clients.json", encoding="utf-8") as f:
             for columna in range(4):  
                 actual = tipus[idx]  
                 mes = mesos[idx]  
-
+                c.setLineWidth(1)
                 if actual.startswith("Bon"):
                     c.setFillColorRGB(0.5, 0.7, 1.0) 
                 elif actual == "Regular":
@@ -193,16 +178,12 @@ with open("PDF/clients.json", encoding="utf-8") as f:
             x = 100 
             y -= 50  
 
-        c.setFillColorRGB(0.5, 0.7, 1.0)
-        c.rect(x, y, 15, 15, stroke=1, fill=1)
-        draw_paragraph(c, "Bonificacio", e.styles["BodyLeft"], x + 25, y + 15, width=100)
 
-        c.setFillColorRGB(1.0, 1.0, 1.0)
-        c.rect(x, y - 20, 15, 15, stroke=1, fill=1)  
-        draw_paragraph(c, "Regular", e.styles["BodyLeft"], x + 25, y - 5, width=100)
+        dibuixarllegenda(c, x, y + 20, (0.0, 1.0, 0.0), "Exempt de pagament")
+        dibuixarllegenda(c, x, y, (0.5, 0.7, 1.0), "Bonificacio del X%")
 
-        c.setFillColorRGB(0.0, 1.0, 0.0)
-        c.rect(x, y - 40, 15, 15, stroke=1, fill=1)
-        draw_paragraph(c, "Exempt", e.styles["BodyLeft"], x + 25, y - 25, width=100)
+        dibuixarllegenda(c, x, y - 20, (1.0, 1.0, 1.0), "Pagament regular")
+
+
 
         c.save() 
