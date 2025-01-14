@@ -62,7 +62,7 @@ with open("PDF/clients.json", encoding="utf-8") as f:
         num+=1
         c = canvas.Canvas(filename, pagesize=A4)
         current_y = page_height - 50
-        margin = 50
+        margin = 100
         width = page_width - (2 * margin)
         draw_peu(c,client,1)
         draw_encabezado(c,client,current_y)
@@ -88,20 +88,20 @@ with open("PDF/clients.json", encoding="utf-8") as f:
             f"Impostos aplicats: {client['detall_cobraments']['impostos']}",
         ]
 
-        draw_paragraph(c,f"Total a pagar: <b>{client['detall_cobraments']['total']}€</b>",e.styles["BodyLeft"],80,510,490)
+        draw_paragraph(c,f"Total a pagar: <b>{client['detall_cobraments']['total']}€</b>",e.styles["BodyLeft"],95,425,490)
 
-        c.drawImage(image_path, 50, 325, 175, 75, None, True)
+        c.drawImage(image_path, 100, 225, 175, 75, None, True)
 
         draw_paragraph(
             c,"Recordi que pot consultar els detalls de les seves factures i gestionar els seus pagaments "
-            f"a través de l'àrea de clients al nostre lloc web o contactar amb el nostre servei d'atenció al client al {client['telefon']}",e.styles["BodyLeft"],margin,480,width)
+            f"a través de l'àrea de clients al nostre lloc web o contactar amb el nostre servei d'atenció al client al {client['telefon']}",e.styles["BodyLeft"],margin,380,width)
 
         draw_paragraph(
-            c,"Gràcies per confiar en nosaltres",e.styles["BodyLeft"],margin,430, width)
+            c,"Gràcies per confiar en nosaltres",e.styles["BodyLeft"],margin,330, width)
 
         link_txt = "Departament d'Atenció al Client "
         link_x = 300
-        link_y = 350
+        link_y = 250
         link_url = "https://www.iesesteveterradas.cat"
         link_height = draw_paragraph(c, "<u>" + link_txt + "</u>", e.styles["link_style"], link_x, link_y, width)
 
@@ -119,15 +119,14 @@ with open("PDF/clients.json", encoding="utf-8") as f:
         )
         c.linkURL(link_url, link_rect, relative=0)
 
-        draw_paragraph(c, text, e.styles["BodyLeft"], 300, 400, width)
+        draw_paragraph(c, text, e.styles["BodyLeft"], 300, 300, width)
 
-        text_height = draw_paragraph(c, text, e.styles["BodyLeft"], 100 + width + 10, 200 + 100, width)
 
-        for text, style_name in texts:
-            height = draw_paragraph(c, text, e.styles[style_name], margin, current_y - 60, width)
+        for txt, style_name in texts:
+            height = draw_paragraph(c, txt, e.styles[style_name], margin, current_y - 100, width)
             current_y -= (height + e.styles[style_name].spaceBefore + e.styles[style_name].spaceAfter)
 
-        current_y = draw_bullet_list(c, list_items, e.styles["ListStyle"], margin, current_y - 60, width)
+        current_y = draw_bullet_list(c, list_items, e.styles["ListStyle"], margin, current_y - 100, width)
 
         c.showPage()
         current_y = page_height - 50
