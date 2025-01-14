@@ -68,7 +68,7 @@ for element in data:
     col_2 = 1  
     for titol in titols_pag_2:
         if titol == "id":  
-            worksheet1.write_formula(fila, 0, f'=MID("={element["id"]}",4,4)') 
+            worksheet1.write_formula(fila, 0, f'=MID("={element["id"]}",3,4)') 
         elif titol in element:  
             for columna in lista_columns:
                 if col_2 < len(lista_columns) + 1:
